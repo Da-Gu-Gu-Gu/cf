@@ -2,6 +2,10 @@
   "name": "crush-finder",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.13.x",
+    "npm":"8.1.0"
+  },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.4",

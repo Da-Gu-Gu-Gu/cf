@@ -5,9 +5,9 @@ import {FaFacebook} from 'react-icons/fa'
 const Navigation = () => {
     return (
 
-       <Box  h='50' className="nav"  bg="blueviolet" lineHeight='50px'  w="100%"  >
+       <Box  h='50' className="nav"   lineHeight='50px'  w="100%"  >
          <Container  maxW="container.xl" justifyContent='space-between'  display='flex'>
-                    <Text color={'black'}>
+                    <Text fontWeight={'bold'}>
                     Crush Finder
                  </Text>
             

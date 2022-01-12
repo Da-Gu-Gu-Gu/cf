@@ -31,17 +31,20 @@ const Canvas = () => {
         scene.add(camera)
 
         //light
-        const ambientLight = new THREE.AmbientLight(0xffffff, 10)
+        const ambientLight = new THREE.AmbientLight(new THREE.Color('#c674fa'), 10)
         scene.add(ambientLight)
 
         const pointLight = new THREE.PointLight(0xffffff, 1, 100)
+        pointLight.position.set(0,-2,0)
         scene.add(pointLight)
 
         const spotLight = new THREE.SpotLight(0xffffff);
         spotLight.position.set(0, 15, 10);
         scene.add(spotLight);
 
-
+// 	const heartMaterial=new THREE.MeshStandardMaterial({
+// 	color:new THREE.Color('#c674fa')
+// })	
 
         //Model
         let model = null
@@ -49,8 +52,8 @@ const Canvas = () => {
         loader.load('/heart.glb', (gltf) => {
             model = gltf
             model.scene.position.set(0, 0, 0)
-
-            model.scene.children[0].material.color = new THREE.Color(0xE0B0D5)
+   		// model.scene.children[0].material=heartMaterial
+        //     console.log(    model.scene.children[0].material )
             scene.add(model.scene)
         })
 

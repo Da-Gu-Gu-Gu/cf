@@ -1,11 +1,11 @@
 import React from 'react'
-import { Container, Circle,Badge } from '@chakra-ui/react'
+import { Container, Circle, Badge } from '@chakra-ui/react'
 
 const About = () => {
     return (
         <div className="about common">
             <Container maxW={'container.xl'} >
-                <p>Usage ❔</p>
+                <p>Usage </p>
 
 
                 <div className="wrap">
@@ -25,7 +25,10 @@ const About = () => {
                         <Circle className='icon' size='20px' bg='black' color='white' mr="3">
                             2
                         </Circle>
-                        <span>Search your's <i>crush</i> and add to crush list </span>
+                    
+                            <span >Search your's <i>crush</i> and add to crush list </span>
+                          
+                
                     </div>
                     <div className="four">
                         Four
@@ -44,13 +47,13 @@ const About = () => {
                     </div>
                 </div>
 
-                <div className="tip">
-                <Badge mr='3' fontSize='0.8em'  bg='black' color={'white'}>
-    Tip :
-  </Badge>
-  More your friend use this, get more chance !
-                </div>
 
+                <div className="tip" style={{marginTop:'25px'}}>
+                                <Badge mr='3'  size={'sm'} fontSize='0.8em' bg='black' color={'white'}>
+                                    Tip :
+                                </Badge>
+                                More your friend use this, get more chance !
+                            </div>
 
             </Container>
         </div>

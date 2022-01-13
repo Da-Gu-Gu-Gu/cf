@@ -1,6 +1,7 @@
 import React from 'react'
 import About from './utils/About'
 import Canvas from './utils/Canvas'
+import Feedback from './utils/Feedback'
 const Home = () => {
     return (
         <div className='wrapper'>
@@ -10,6 +11,7 @@ const Home = () => {
            </div>
        
            <About/>
+           <Feedback/>
   
         <Canvas/>
         </div>

@@ -1,11 +1,11 @@
 import React from 'react'
-import {Box, Text,Button,Stack, Container} from '@chakra-ui/react'
+import { Text,Button,Stack, Container} from '@chakra-ui/react'
 import {FaFacebook} from 'react-icons/fa'
 
 const Navigation = () => {
     return (
 
-       <Box  h='50' className="nav"   lineHeight='50px'  w="100%"  >
+       <div className="nav"     >
          <Container  maxW="container.xl" justifyContent='space-between'  display='flex'>
                     <Text fontWeight={'bold'}>
                     Crush Finder
@@ -19,7 +19,7 @@ const Navigation = () => {
         
         </Stack>
         </Container>
-         </Box>
+         </div>
           
       
     )

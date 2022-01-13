@@ -13,7 +13,7 @@ const Navigation = () => {
             
                 <Stack direction='row' spacing={3} paddingTop={'5px'}>
                    
-        <Button colorScheme='facebook' leftIcon={<FaFacebook />}>
+        <Button colorScheme='facebook' size={'md'} leftIcon={<FaFacebook />}>
               Facebook
         </Button>
         

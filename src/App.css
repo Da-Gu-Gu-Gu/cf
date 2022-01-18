@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
 
+*:focus { outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;}
+
 *{
   margin:0;
   padding:0;
@@ -62,11 +65,11 @@
 .about{
   padding-top: 60px;
   padding-bottom: 60px;
-  background-color: white;
+  /* background-color: white; */
   /* height: 100%; */
 }
 
-.about p{
+.about p,.userpage span{
 
   font-size: 2rem;
   font-weight: bold;
@@ -139,6 +142,26 @@ i{
   text-align: center;
   left: 50%;
   transform: translate(-50%,-50%);
+}
+
+.crushadd{
+  position:fixed;
+  bottom: 50px;
+
+}
+
+.crushList{
+  margin: auto;
+  width:max-content;
+  border-radius: 10px;
+}
+
+.userpage{
+  background-color:rgba(255, 10, 84,0.3);
+  width:100%;
+  z-index: -1;
+  height: 100vh;
+  padding-top: 100px;
 }
 
 @media (max-width:500px){

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container, Circle, Badge } from '@chakra-ui/react'
+import { Container, Circle,Box, Badge,useColorModeValue } from '@chakra-ui/react'
 
 const About = () => {
     return (
-        <div className="about common">
+        <Box className="about common" bg={useColorModeValue('white', 'gray.800')}>
             <Container maxW={'container.xl'} >
                 <p>Usage </p>
 
@@ -56,7 +56,7 @@ const About = () => {
                             </div>
 
             </Container>
-        </div>
+        </Box>
     )
 }
 

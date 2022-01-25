@@ -1,0 +1,25 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAq0-8IKIJPIC3ZBSY0oh3eRDMaF8H1XFY",
+  authDomain: "crush-finder-c016e.firebaseapp.com",
+  projectId: "crush-finder-c016e",
+  storageBucket: "crush-finder-c016e.appspot.com",
+  messagingSenderId: "885374645591",
+  appId: "1:885374645591:web:e3767651580599ffdcfa12",
+  measurementId: "G-KDRLNL6DCF"
+};
+
+
+const FirebaseApp=()=>{
+    initializeApp(firebaseConfig)
+}
+
+export default FirebaseApp

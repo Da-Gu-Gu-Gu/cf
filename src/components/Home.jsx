@@ -2,7 +2,10 @@ import React from 'react'
 import About from './utils/About'
 import Canvas from './utils/Canvas'
 import Feedback from './utils/Feedback'
+import axios from 'axios'
+
 const Home = () => {
+
     return (
         <div className='wrapper'>
       

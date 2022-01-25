@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme,withDefaultColorScheme  } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
 const config = {
@@ -26,9 +26,15 @@ const components={
 })
 }
 
-  const theme = extendTheme({ 
+  const theme = extendTheme(
+    withDefaultColorScheme({
+      colorScheme: 'black',
+      components: ['Menu', 'MenuList','MenuItem'],
+    }),
+    { 
+
     config ,
-    // styles,
+    
     components
 })
 

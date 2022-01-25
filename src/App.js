@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Routes,Route,Navigate} from 'react-router-dom'
 import Home from './components/Home'
 import User from './components/User'
 import Navigation from './components/utils/Navigation';
@@ -10,6 +10,7 @@ import {useSelector} from 'react-redux'
 function App() {
   const user=useSelector(state=>state.user.user)
   console.log(user)
+
   return (
     <ChakraProvider>
       <ThemeProvider theme={theme}>
@@ -18,7 +19,7 @@ function App() {
           <Navigation/>
           <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path="/user" element={user?<User/>:<Home/>}/>
+            <Route path="/user" element={user?<User/>:<Navigate to="/" />}/>
           </Routes>
         </Router>
         </ThemeProvider>

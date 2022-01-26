@@ -6,6 +6,9 @@ import Navigation from './components/utils/Navigation';
 import { ChakraProvider,ColorModeScript,ThemeProvider } from '@chakra-ui/react'
 import theme from './components/utils/theme/theme'
 import {useSelector} from 'react-redux'
+import Friends from './components/Friends'
+
+
 
 function App() {
   const user=useSelector(state=>state.user.user)
@@ -20,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/user" element={user?<User/>:<Navigate to="/" />}/>
+            <Route path="/friends" element={user?<Friends/>:<Navigate to="/" />}/>
           </Routes>
         </Router>
         </ThemeProvider>

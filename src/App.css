@@ -164,6 +164,14 @@ i{
   padding-top: 100px;
 }
 
+.friendpage{
+  background-color:rgba(255, 10, 84,0.3);
+  width:100%;
+  z-index: -1;
+  height: 100vh;
+  padding-top: 60px;
+}
+
 @media (max-width:500px){
   .landingPage h1{
     /* border: 1px solid blue; */

@@ -6,6 +6,7 @@ const userSlice=createSlice({
         user:null,
         token:'',
         friends:[],
+        cl:[]
     },
     reducers:{
         getUser:(state,action)=>{
@@ -14,10 +15,14 @@ const userSlice=createSlice({
         getFriends:(state,action)=>{
             state.friends=action.payload.friends
         },
+        setCl:(state,action)=>{
+            state.cl=action.payload.cl
+        },
         logoutUser:(state,action)=>{
             state.user=null
             state.token=''
             state.friends=[]
+            state.cl=[]
 
         },
         setToken:(state,action)=>{
@@ -27,5 +32,5 @@ const userSlice=createSlice({
 })
 
 
-export const {getUser,logoutUser,setToken,getFriends}=userSlice.actions
+export const {getUser,logoutUser,setToken,getFriends,setCl}=userSlice.actions
 export default userSlice.reducer

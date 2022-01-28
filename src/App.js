@@ -12,7 +12,7 @@ import Friends from './components/Friends'
 
 function App() {
   const user=useSelector(state=>state.user.user)
-  console.log(user)
+ 
 
   return (
     <ChakraProvider>

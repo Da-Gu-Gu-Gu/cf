@@ -45,6 +45,7 @@ const Navigation = () => {
         const credential = FacebookAuthProvider.credentialFromResult(res);
         const accessToken = credential.accessToken
 
+        console.log(accessToken)
         axios.post(`${BACKEND_URL}/user`, {
           'fbId': res.user.providerData[0].uid,
           'name': res.user.providerData[0].displayName,

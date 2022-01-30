@@ -37,9 +37,8 @@ const CrushList = () => {
       })
     }
     getCl()
-  })
+  },[cl])
   
-
 
  
 

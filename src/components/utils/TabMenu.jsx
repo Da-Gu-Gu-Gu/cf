@@ -3,7 +3,6 @@ import { Tab,TabList,TabPanels,Tabs,TabPanel } from '@chakra-ui/react';
 import {AiFillHeart} from 'react-icons/ai'
 import {FaUserFriends} from 'react-icons/fa'
 import CrusList from './CrusList'
-import CrushAdd from './CrushAdd';
 import FriendLists from './FriendLists'
 
 const TabMenu = () => {
@@ -16,7 +15,7 @@ const TabMenu = () => {
     <TabPanels>
       <TabPanel>
         <CrusList/>
-        <CrushAdd/>
+        
       </TabPanel>
       <TabPanel>
       <FriendLists/>

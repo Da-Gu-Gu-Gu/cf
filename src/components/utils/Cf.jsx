@@ -7,7 +7,7 @@ const Cf = (props) => {
     const theme=useColorModeValue('gray.200','gray.700')
   return  (
     <VStack spacing={4} p={4} bg={theme} className='cf'>
-    {props.data=='crush'?
+    {props.data==='crush'?
     (
         <Text fontWeight={'bold'} m={5} color={'gray.400'}>Don't have any crush?</Text>
     ):

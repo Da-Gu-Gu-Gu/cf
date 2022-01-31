@@ -12,15 +12,33 @@ const CrushList = () => {
 
   const dispatch=useDispatch()
   const friendList=useSelector(state=>state.user.friends.friends.data)
+  // console.log(friendList)
   const user=useSelector(state=>state.user.user)
   const token=useSelector(state=>state.user.token)
-  const [cl,setCL]=useState([])
+  const [crushList,setCrushList]=useState([])
+  let cl=[]
+  const removeCrush=async(crushId)=>{
+    await axios.put(`${BACKEND_URL}/removecrush`,{
+      'id':user[0].uid, //min yae id
+      'crushId':crushId,
+    },{
+      headers:{
+        authorization:"Bearer " + token
+      }
+    })
+    .then(res=>{
+      if(res.status===200){
+        console.log(res.data)
+      }
+    })
   
-
+  }
+  
+  // console.log(friendList.filter(x=>x.id==='103115425622415'))
 
   useEffect(()=>{
-     const getCl=()=>{
-     axios.post( `${BACKEND_URL}/mycrushlist`,{
+     const getCl=async()=>{
+     await axios.post( `${BACKEND_URL}/mycrushlist`,{
       'id':user[0].uid,
      },
       {
@@ -31,14 +49,18 @@ const CrushList = () => {
       })
       .then(res=>{
         if(res.status=='200') {
-          setCL(res.data)
+          setCrushList(res.data)
           dispatch(setCl({cl:res.data}))
         }
       })
     }
     getCl()
-  },[cl])
+  })
   
+
+
+
+
 
  
 
@@ -48,16 +70,17 @@ const CrushList = () => {
     return (
       <VStack spacing={4}  p={4} className='crushList'  bg={theme} >
         {
-        cl.length<1?
+        crushList.length<1?
         (
             <Cf data="crush" />
         )
         :
-        cl.map(friend=>(
-          <HStack spacing={4} key={friend.id} bg={theme} p={2} borderRadius={10}>
-          <Avatar name='Dan Abrahmov' src={friend.id} />
-          <Text fontWeight={'bold'} width={{base:'151px',md:'200px',lg:'200px'}}> {friend.name} </Text>
-            <IconButton  icon={<BiTrash/>} isRound={'true'} bg={theme} />
+        crushList.map(a=>friendList.filter(b=>b.id===a))
+        .map((friend,index)=>(
+          <HStack spacing={4} key={index} bg={theme} p={2} borderRadius={10}>
+          <Avatar name='Dan Abrahmov' src={friend[0].id} />
+          <Text fontWeight={'bold'} width={{base:'151px',md:'200px',lg:'200px'}}> {friend[0].name} </Text>
+            <IconButton  icon={<BiTrash/>} isRound={'true'} bg={theme} onClick={()=>removeCrush(friend[0].id)} />
           </HStack>
           )
       

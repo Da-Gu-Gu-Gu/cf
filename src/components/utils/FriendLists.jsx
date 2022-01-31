@@ -7,6 +7,7 @@ import {BiSearch} from 'react-icons/bi'
 
 import { useSelector } from 'react-redux'
 import {
+  Spinner,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -20,11 +21,12 @@ import {
 import Cf from './Cf'
 import {BACKEND_URL} from './keys/keys'
 import axios from 'axios'
+// import {Spinner}
 
 const FriendLists = () => {
  
   const user=useSelector(state=>state.user.user)
-  console.log(user)
+  const [loading,setLoading]=useState(false)
   const token=useSelector(state=>state.user.token)
   const friendList=useSelector(state=>state.user.friends.friends.data)
   const [search,setSearch]=useState('')
@@ -37,23 +39,26 @@ const FriendLists = () => {
   const addCrush=(crushId)=>{
     setCrush(friendList.filter((x)=>x.id===crushId))
     onOpen()
-    console.log(crush)
   }
 
 const confirmCrush=async()=>{
+  setLoading(true)
   await axios.put(`${BACKEND_URL}/addcrush`,{
     'id':user[0].uid, //min yae id
     'crushId':crush[0].id,
   },{
     headers:{
-      authorization:token
+      authorization:"Bearer " + token
     }
   })
   .then(res=>{
     if(res.status===200){
+      console.log(res.data)
       onClose()
+      setLoading(false)
     }
   })
+
 }
 
 
@@ -111,7 +116,7 @@ const confirmCrush=async()=>{
             <Button variant='ghost' mr={3} onClick={onClose}>
               No
             </Button>
-            <Button variant='ghost' bg={'#ff0a54'} onClick={confirmCrush} color={useColorModeValue('white','white')}>Confirm</Button>
+            <Button variant={'solid'} _hover={{ bg: useColorModeValue('#ff0a54', '#ff0a54') }} isLoading={loading} bg={'#ff0a54'} spinner={<Spinner size={'md'} color='white' />} onClick={confirmCrush} color={useColorModeValue('white','white')}>Confirm</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

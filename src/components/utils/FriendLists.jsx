@@ -7,6 +7,7 @@ import {BiSearch} from 'react-icons/bi'
 
 import { useSelector } from 'react-redux'
 import {
+  useToast,
   Spinner,
   Modal,
   ModalOverlay,
@@ -21,10 +22,11 @@ import {
 import Cf from './Cf'
 import {BACKEND_URL} from './keys/keys'
 import axios from 'axios'
-// import {Spinner}
+
 
 const FriendLists = () => {
  
+  const toast=useToast()
   const user=useSelector(state=>state.user.user)
   const [loading,setLoading]=useState(false)
   const token=useSelector(state=>state.user.token)
@@ -54,6 +56,12 @@ const confirmCrush=async()=>{
   .then(res=>{
     if(res.status===200){
       console.log(res.data)
+      toast({
+        position:'bottom',
+        title: `${res.data.msg}`,
+        status: res.data.error?'error':'success',
+        isClosable: true,
+      })
       onClose()
       setLoading(false)
     }

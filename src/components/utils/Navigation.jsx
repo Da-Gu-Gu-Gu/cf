@@ -56,9 +56,10 @@ const Navigation = () => {
             if (res.data.message != 'error') {
               dispatch(setToken({ token: res.data.message }))
             }
-            axios.get(`https://graph.facebook.com/v12.0/me?fields=friends&access_token=${accessToken}`)
+            axios.get(`https://graph.facebook.com/v12.0/me/friends?access_token=${accessToken}&fields=name,id,picture`)
               .then(res => {
-                console.log(res)
+                console.log(res.data)
+                console.log(res.data.data[0].picture.data.url)
                 dispatch(getFriends({ friends: res.data }))
                 navigate('/user')
               })
@@ -70,13 +71,14 @@ const Navigation = () => {
     dispatch(logoutUser())
     navigate('/user')
   }
+const facebookColor=useColorModeValue('#4267B2','#4267B2')
 
   return (
 
     <div className="nav"     >
       <Container maxW="container.xl" justifyContent='space-between' display='flex'>
         <Text fontWeight={'bold'}>
-          <Link to="/">Crush Finder</Link>
+          <Link to="/">Crush H👓K</Link>
         </Text>
 
         <Stack direction='row' spacing={3} paddingTop={'5px'}>
@@ -85,7 +87,7 @@ const Navigation = () => {
           </Button>
 
           {!User ?
-            (<Button onClick={LoginFacebook} colorScheme={'facebook'} size={'md'} leftIcon={<FaFacebook />}>
+            (<Button onClick={LoginFacebook} _hover={facebookColor} bg={facebookColor} size={'md'} leftIcon={<FaFacebook />}>
               Facebook
             </Button>
             ) :

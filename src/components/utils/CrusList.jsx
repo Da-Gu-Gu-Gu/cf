@@ -11,7 +11,7 @@ import Cf from './Cf'
 const CrushList = () => {
 
   const dispatch=useDispatch()
-  const friendList=useSelector(state=>state.user.friends.friends.data)
+  const friendList=useSelector(state=>state.user.friends.data)
   // console.log(friendList)
   const user=useSelector(state=>state.user.user)
   const token=useSelector(state=>state.user.token)
@@ -34,7 +34,7 @@ const CrushList = () => {
   
   }
   
-  // console.log(friendList.filter(x=>x.id==='103115425622415'))
+
 
   useEffect(()=>{
      const getCl=async()=>{
@@ -60,7 +60,7 @@ const CrushList = () => {
 
 
 
-
+// console.log(crushList)
 
  
 
@@ -72,18 +72,18 @@ const CrushList = () => {
         {
         crushList.length<1?
         (
-            <Cf data="crush" />
+            <Cf data="crush" /> 
         )
         :
         crushList.map(a=>friendList.filter(b=>b.id===a))
-        .map((friend,index)=>(
+        .map((friend,index)=>
+        (
           <HStack spacing={4} key={index} bg={theme} p={2} borderRadius={10}>
-          <Avatar name='Dan Abrahmov' src={friend[0].id} />
+          <Avatar name={friend[0].id} src={friend[0].picture.data.url} />
           <Text fontWeight={'bold'} width={{base:'151px',md:'200px',lg:'200px'}}> {friend[0].name} </Text>
             <IconButton  icon={<BiTrash/>} isRound={'true'} bg={theme} onClick={()=>removeCrush(friend[0].id)} />
           </HStack>
           )
-      
         )}
        
  </VStack>

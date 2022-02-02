@@ -7,6 +7,7 @@ import { ChakraProvider,ColorModeScript,ThemeProvider } from '@chakra-ui/react'
 import theme from './components/utils/theme/theme'
 import {useSelector} from 'react-redux'
 import Friends from './components/Friends'
+import Notification from './components/Notification';
 
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/user" element={user?<User/>:<Navigate to="/" />}/>
             <Route path="/friends" element={user?<Friends/>:<Navigate to="/" />}/>
+            <Route path='/noti' element={user?<Notification/>:<Navigate to="/"/>} />
           </Routes>
         </Router>
         </ThemeProvider>

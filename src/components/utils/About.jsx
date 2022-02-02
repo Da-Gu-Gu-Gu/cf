@@ -5,7 +5,7 @@ const About = () => {
     return (
         <Box className="about common" bg={useColorModeValue('white', 'gray.800')}>
             <Container maxW={'container.xl'} >
-                <p>Usage </p>
+                <p>Usage 👋 </p>
 
 
                 <div className="wrap">
@@ -16,7 +16,7 @@ const About = () => {
                         <span>Login with Facebook</span>
                     </div>
                     <div className="two">
-                        Two
+                        two
                     </div>
                 </div>
 

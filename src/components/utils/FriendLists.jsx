@@ -30,7 +30,8 @@ const FriendLists = () => {
   const user=useSelector(state=>state.user.user)
   const [loading,setLoading]=useState(false)
   const token=useSelector(state=>state.user.token)
-  const friendList=useSelector(state=>state.user.friends.friends.data)
+  const friendList=useSelector(state=>state.user.friends.data)
+  console.log(friendList)
   const [search,setSearch]=useState('')
   const [crush,setCrush]=useState([{'name':'example'}])
   const fl=[...friendList]
@@ -99,7 +100,7 @@ const confirmCrush=async()=>{
           .map(friend=>
           (
           <HStack spacing={4} key={friend.id} bg={theme} p={2}  borderRadius={10}>
-          <Avatar name='Dan Abrahmov' src={friend.id} />
+          <Avatar name={friend.name} src={friend.picture.data.url} />
           <Text fontWeight={'bold'} width={{base:'151px',md:'200px',lg:'200px'}}> {friend.name} </Text>
             <IconButton  icon={<AiFillHeart/>} isRound={'true'} bg={theme}  onClick={()=>addCrush(friend.id)} />
           </HStack>

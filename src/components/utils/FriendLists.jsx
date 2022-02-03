@@ -44,6 +44,24 @@ const FriendLists = () => {
     onOpen()
   }
 
+const addNoti=async()=>{
+  await axios.post(`${BACKEND_URL}/noti`,{
+            'id':user[0].uid,
+            'crushId':crush[0].id
+          },{
+            headers:{
+              authorization:"Bearer "+token
+            }
+          })
+          .then(res=>{
+            console.log(res.data)
+          })
+          .catch(err=>{
+            console.log(err)
+          })
+        }
+
+
 const confirmCrush=async()=>{
   setLoading(true)
   await axios.put(`${BACKEND_URL}/addcrush`,{
@@ -63,6 +81,9 @@ const confirmCrush=async()=>{
         status: res.data.error?'error':'success',
         isClosable: true,
       })
+      if(res.data.match){ 
+        addNoti()
+      }
       onClose()
       setLoading(false)
     }

@@ -1,33 +1,48 @@
-import React,{useEffect} from 'react'
-import axios from 'axios'
-import { BACKEND_URL } from './utils/keys/keys'
-import {useSelector} from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Container, IconButton, useColorModeValue } from '@chakra-ui/react'
+import { Badge, HStack, VStack, StackDivider, Box, Avatar } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { IoMdArrowBack } from 'react-icons/io'
 
+const Notification = () => {
 
-const Notification=()=>{
+    const noti = useSelector(state => state.user.noti)
+    console.log(noti)
 
-    const user=useSelector(state=>state.user.user)
-    const token=useSelector(state=>state.user.token)
+    const theme = useColorModeValue('gray', 'gray.700')
+    return (
+        <div className='userpage'>
+            <Link to="/user">
+                <IconButton aria-label='Search database' _hover={{ bg: useColorModeValue('gray.50', 'gray.600') }} bg={useColorModeValue('white', 'gray.700')} ml={5} mb={5} icon={<IoMdArrowBack />} />
+            </Link>
+            <Container maxW={'container.sm'}>
+                <VStack
+                    divider={<StackDivider borderColor='gray.200' />}
+                    spacing={4}
+                    mt={3}
+                    align='stretch'
+                >
+                    {noti.map(a =>
+                   
+                            <HStack spacing={4} h='60px' key={a._id} p={3} borderRadius={10}>
 
-    useEffect(()=>{
-      const matchCrush=async()=>{
-       await axios.post(`${BACKEND_URL}/match/me`,{
-            'id':user[0].uid,
-        },
-         {
-            headers: {
-             authorization: "Bearer " + token
-          }    
-         })
-         .then(res=>{
-             console.log(res.data)
-         })
-        }
-    matchCrush()
-    
-    })
-   return (
-        <div>aa</div>
+                                <Avatar name={a.crushId.name} src={a.crushId.img} bg={a.read ? theme : '#ff0a54'} />
+                                <Box>Congratulation, <i>{a.crushId.name}</i> also crush on you 😙
+                                </Box>
+                                {a.read ? null : (
+                                    <Badge style={{ fontSize: '10px' }} colorScheme='green'>
+                                        New
+                                    </Badge>
+                                )
+                                }
+                            </HStack>
+
+                    
+                    )}
+                </VStack>
+            </Container>
+        </div>
     )
 }
 

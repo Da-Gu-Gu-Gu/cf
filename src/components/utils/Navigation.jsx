@@ -29,8 +29,14 @@ const Navigation = () => {
 
   const dispatch = useDispatch()
   const User = useSelector(state => state.user.user)
+  const noti=useSelector(state=>state.user.noti)
   const { colorMode, toggleColorMode } = useColorMode()
   const [user, setUser] = useState()
+
+
+  const aa=noti.some((x)=>x.read===false)
+ 
+
 
   const navigate = useNavigate()
 
@@ -72,7 +78,9 @@ const Navigation = () => {
     navigate('/user')
   }
 const facebookColor=useColorModeValue('#4267B2','#4267B2')
-
+const theme=useColorModeValue('gray.200','gray.700')
+const hover= useColorModeValue('gray.300', 'gray.600')
+const color=useColorModeValue('black','white')
   return (
 
     <div className="nav"     >
@@ -104,22 +112,26 @@ const facebookColor=useColorModeValue('#4267B2','#4267B2')
                     </Center>
                   </Flex>
                 </MenuButton>
-                <MenuList maxHeight={'160px'} mt={1} bg={'gray.800'}>
-                  <MenuItem maxHeight={'40px'}  _hover={{ bg: 'gray.700' }}>
-                    <Text color={'white'}>
-                      <Avatar bg='gray.800'  _hover={{ bg: 'gray.700' }} height={'35px'} mt={2} mr={2} width={'35px'} icon={<IoIosNotificationsOutline fontSize='1.5rem' color='white'/>}>
-                        <AvatarBadge borderColor='gray.800' mb={6} mr={1} bg='tomato' boxSize='0.7em' />
-                      </Avatar>Notifications</Text></MenuItem>
-                      <Link to='/friends'><MenuItem maxHeight={'40px'}   _hover={{ bg: 'gray.700' }}>
+                <MenuList maxHeight={'160px'} mt={1} bg={theme}>
+                  <Link to="/noti">
+                  <MenuItem maxHeight={'40px'}  _hover={{ bg:hover}} color={color}>
+                
+                      <Avatar bg={theme}  _hover={{ bg:hover}} height={'35px'} mt={2} mr={2} width={'35px'} icon={<IoIosNotificationsOutline fontSize='1.5rem' color={color}/>}>
+                       { aa && (<AvatarBadge borderColor={theme} mb={6} mr={1} bg='tomato' boxSize='0.7em' />)}
+                      </Avatar>Notifications
+                      </MenuItem>
+                    </Link>
+                      <Link to='/friends'>
+                        <MenuItem maxHeight={'40px'} color={color}  _hover={{ bg:hover}}>
                  
-                      <Avatar bg='gray.800' _hover={{ bg: 'gray.700' }} height={'35px'} mt={1} mr={2} width={'35px'} icon={<FaUserFriends fontSize='1.5rem' color='white'/>}/>
+                    <Avatar bg={theme} _hover={{ bg:hover}} height={'35px'} mt={1} mr={2} width={'35px'} icon={<FaUserFriends fontSize='1.5rem' color={color}/>}/>
                     Friends
                 
                     </MenuItem>
                     </Link>
                   <MenuDivider />
-                  <MenuItem maxHeight={'40px'} onClick={Logout} color={'tomato'}  _hover={{ bg: 'gray.700' }}>
-                  <Avatar bg='gray.800' _hover={{ bg: 'gray.700' }} height={'35px'} mt={1} mr={2} width={'35px'} icon={<FiLogOut fontSize='1.5rem' color='red'/>}/>
+                  <MenuItem maxHeight={'40px'}  onClick={Logout} color={'#ff0a54'}  _hover={{ bg:hover}}>
+                  <Avatar bg={theme} _hover={{ bg:hover}} height={'35px'} mt={1} mr={2} width={'35px'} icon={<FiLogOut fontSize='1.5rem' color={'#ff0a54'}/>}/>
                     Logout</MenuItem>
                 </MenuList>
               </Menu>

@@ -12,7 +12,6 @@ const CrushList = () => {
 
   const dispatch=useDispatch()
   const friendList=useSelector(state=>state.user.friends.data)
-  // console.log(friendList)
   const user=useSelector(state=>state.user.user)
   const token=useSelector(state=>state.user.token)
   const [crushList,setCrushList]=useState([])
@@ -35,10 +34,8 @@ const CrushList = () => {
   }
   
 
-
-  useEffect(()=>{
-     const getCl=async()=>{
-     await axios.post( `${BACKEND_URL}/mycrushlist`,{
+useEffect(()=>{
+     axios.post( `${BACKEND_URL}/mycrushlist`,{
       'id':user[0].uid,
      },
       {
@@ -53,10 +50,8 @@ const CrushList = () => {
           dispatch(setCl({cl:res.data}))
         }
       })
-    }
-    getCl()
-  })
-  
+    }   
+)
 
 
 

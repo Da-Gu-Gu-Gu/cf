@@ -5,7 +5,7 @@ import {HStack,InputLeftElement,VStack,Avatar,IconButton,useColorModeValue,Text,
 import {AiFillHeart} from 'react-icons/ai'
 import {BiSearch} from 'react-icons/bi'
 
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import {
   useToast,
   Spinner,
@@ -20,12 +20,14 @@ import {
   Button
 } from '@chakra-ui/react'
 import Cf from './Cf'
+import { setNoti } from './redux/userReducer'
 import {BACKEND_URL} from './keys/keys'
 import axios from 'axios'
 
 
 const FriendLists = () => {
  
+  const dispatch=useDispatch()
   const toast=useToast()
   const user=useSelector(state=>state.user.user)
   const [loading,setLoading]=useState(false)
@@ -62,6 +64,24 @@ const addNoti=async()=>{
         }
 
 
+const getNoti=async()=>{
+ await axios.post(`${BACKEND_URL}/noti/me`,{
+    'id':user[0].uid,
+},
+{
+    headers:{
+      authorization:"Bearer " + token
+    }
+})
+.then(res=>{
+    console.log(res.data)
+    dispatch(setNoti({noti:res.data}))
+})
+.catch(err=>{
+    console.log(err)
+})
+}
+
 const confirmCrush=async()=>{
   setLoading(true)
   await axios.put(`${BACKEND_URL}/addcrush`,{
@@ -83,6 +103,7 @@ const confirmCrush=async()=>{
       })
       if(res.data.match){ 
         addNoti()
+        getNoti()
       }
       onClose()
       setLoading(false)

@@ -13,7 +13,7 @@ import { BsFillMoonStarsFill } from 'react-icons/bs'
 import { IoIosArrowDown } from 'react-icons/io'
 import { BsSun } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
-import { getUser, getFriends, logoutUser, setToken } from './redux/userReducer'
+import { getUser, getFriends, logoutUser, setToken,setNoti } from './redux/userReducer'
 import { getAuth, signInWithPopup, FacebookAuthProvider, } from 'firebase/auth'
 import FirebaseApp from './firebase/firebase'
 import axios from 'axios'
@@ -32,12 +32,11 @@ const Navigation = () => {
   const noti=useSelector(state=>state.user.noti)
   const { colorMode, toggleColorMode } = useColorMode()
   const [user, setUser] = useState()
-
+  const [tooken,setTooken]=useState()
 
   const aa=noti.some((x)=>x.read===false)
- 
 
-
+  let Token
   const navigate = useNavigate()
 
   const auth = getAuth()
@@ -45,8 +44,9 @@ const Navigation = () => {
   provider.addScope('user_friends')
   const LoginFacebook = () => {
     signInWithPopup(auth, provider)
-      .then(res => {
+      .then((res) => {
         setUser(res.user.providerData)
+        const UUser=res.user.providerData
         dispatch(getUser({ user: res.user.providerData }))
         const credential = FacebookAuthProvider.credentialFromResult(res);
         const accessToken = credential.accessToken
@@ -60,14 +60,31 @@ const Navigation = () => {
         })
           .then((res) => {
             if (res.data.message != 'error') {
+               Token=res.data.message
               dispatch(setToken({ token: res.data.message }))
             }
             axios.get(`https://graph.facebook.com/v12.0/me/friends?access_token=${accessToken}&fields=name,id,picture`)
               .then(res => {
-                console.log(res.data)
                 console.log(res.data.data[0].picture.data.url)
                 dispatch(getFriends({ friends: res.data }))
-                navigate('/user')
+                console.log(Token)
+                console.log(UUser)
+                axios.post(`${BACKEND_URL}/noti/me`,
+                {
+                  id: UUser[0].uid
+                },{
+                  headers: {
+                      authorization: 'Bearer ' + Token
+                    }
+                  })
+              .then(res=>{
+                  dispatch(setNoti({noti:res.data}))
+                  navigate('/user')
+              })
+              .catch(err=>{
+                  console.log(err)
+              })
+               
               })
           })
       })

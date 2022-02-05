@@ -19,6 +19,7 @@ function App() {
     <ChakraProvider>
       <ThemeProvider theme={theme}>
          <ColorModeScript initialColorMode={theme.config.initialColorMode}  />
+
         <Router>
           <Navigation/>
           <Routes>
@@ -28,6 +29,7 @@ function App() {
             <Route path='/noti' element={user?<Notification/>:<Navigate to="/"/>} />
           </Routes>
         </Router>
+
         </ThemeProvider>
         </ChakraProvider>
   );

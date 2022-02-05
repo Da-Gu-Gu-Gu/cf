@@ -23,6 +23,7 @@ import Cf from './Cf'
 import { setNoti } from './redux/userReducer'
 import {BACKEND_URL} from './keys/keys'
 import axios from 'axios'
+import emailjs from 'emailjs-com'
 
 
 const FriendLists = () => {
@@ -45,6 +46,29 @@ const FriendLists = () => {
     setCrush(friendList.filter((x)=>x.id===crushId))
     onOpen()
   }
+
+  console.log(user)
+emailjs.init('user_6Kk6YQiTCJEwRgqO4MBYR')
+
+const sendEmail=async()=>{
+  await emailjs.send(
+    'service_yha6qc4',
+   'template_y8poo7j',
+  {
+    "name":user[0].displayName,
+    "crushName":crush[0].name.split(' ')[0],
+    "toEmail":user[0].email
+  }
+  )
+  .then(res=>{
+    console.log(res.data)
+  })
+  .catch(err=>{
+    console.log(err)
+  })
+}
+  
+
 
 const addNoti=async()=>{
   await axios.post(`${BACKEND_URL}/noti`,{
@@ -102,6 +126,7 @@ const confirmCrush=async()=>{
         isClosable: true,
       })
       if(res.data.match){ 
+        sendEmail()
         addNoti()
         getNoti()
       }

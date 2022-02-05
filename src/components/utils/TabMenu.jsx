@@ -5,7 +5,10 @@ import {FaUserFriends} from 'react-icons/fa'
 import CrusList from './CrusList'
 import FriendLists from './FriendLists'
 
+
+
 const TabMenu = () => {
+
   return (
     <Tabs variant='unstyled' align='start' isFitted className='tabmenu' >
     <TabList mb={3} >
@@ -14,10 +17,11 @@ const TabMenu = () => {
     </TabList>
     <TabPanels>
       <TabPanel>
-        <CrusList/>
+        <CrusList  />
         
       </TabPanel>
       <TabPanel>
+     
       <FriendLists/>
       </TabPanel>
     </TabPanels>

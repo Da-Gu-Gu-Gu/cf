@@ -65,7 +65,6 @@ const Navigation = () => {
             }
             axios.get(`https://graph.facebook.com/v12.0/me/friends?access_token=${accessToken}&fields=name,id,picture`)
               .then(res => {
-                console.log(res.data.data[0].picture.data.url)
                 dispatch(getFriends({ friends: res.data }))
                 console.log(Token)
                 console.log(UUser)
@@ -102,9 +101,13 @@ const color=useColorModeValue('black','white')
 
     <div className="nav"     >
       <Container maxW="container.xl" justifyContent='space-between' display='flex'>
-        <Text fontWeight={'bold'}>
-          <Link to="/">Crush H👓K</Link>
-        </Text>
+
+          <Link to="/">
+          <Text fontWeight={'bold'} color='white' _hover={{color:'white'}}>
+            Crush H👓K
+          </Text>
+          </Link>
+
 
         <Stack direction='row' spacing={3} paddingTop={'5px'}>
           <Button outline='none' onClick={toggleColorMode} _hover={{ bg: useColorModeValue('gray.50', 'gray.600') }} bg={useColorModeValue('white', 'gray.700')} color={useColorModeValue('gray.700', 'white')}>
@@ -117,7 +120,7 @@ const color=useColorModeValue('black','white')
             </Button>
             ) :
             (
-              <Menu isLazy >
+              <Menu isLazy className="dropdown" >
                 <MenuButton
                   transition='all 0.2s'
                   pb={4}
@@ -129,7 +132,7 @@ const color=useColorModeValue('black','white')
                     </Center>
                   </Flex>
                 </MenuButton>
-                <MenuList maxHeight={'160px'} mt={1} bg={theme}>
+                <MenuList maxHeight={'160px'} mt={1} bg={theme} style={{zIndex:'9999'}}>
                   <Link to="/noti">
                   <MenuItem maxHeight={'40px'}  _hover={{ bg:hover}} color={color}>
                 

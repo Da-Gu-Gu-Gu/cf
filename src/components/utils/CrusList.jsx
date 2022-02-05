@@ -8,9 +8,12 @@ import axios from 'axios'
 import {BACKEND_URL} from './keys/keys'
 import Cf from './Cf'
 
+
+
 const CrushList = () => {
 
   const dispatch=useDispatch()
+ 
   const friendList=useSelector(state=>state.user.friends.data)
   const user=useSelector(state=>state.user.user)
   const token=useSelector(state=>state.user.token)
@@ -55,15 +58,19 @@ useEffect(()=>{
 
 
 
-// console.log(crushList)
+
 
  
 
 
   const theme=useColorModeValue('gray.200','gray.700')
+  
  
     return (
-      <VStack spacing={4}  p={4} className='crushList'  bg={theme} >
+      
+  
+      <VStack  spacing={4}  p={4} className='crushList'  bg={theme} >
+            
         {
         crushList.length<1?
         (
@@ -80,8 +87,8 @@ useEffect(()=>{
           </HStack>
           )
         )}
-       
- </VStack>
+    
+ </VStack >
     )
 }
 

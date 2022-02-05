@@ -40,6 +40,9 @@
   position: fixed;
   top: 0;
 }
+.dropdown{
+  z-index: 1000;
+}
 
 .canvas{
 

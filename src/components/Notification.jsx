@@ -14,8 +14,8 @@ import { BACKEND_URL } from './utils/keys/keys'
 import { useDispatch } from 'react-redux'
 import { setNoti } from './utils/redux/userReducer'
 import axios from 'axios'
-import moment from 'moment'
 
+import moment from 'moment'
 
 import { List, Avatar } from 'antd';
 
@@ -69,7 +69,11 @@ const Notification = () => {
             .catch(err => { console.log(err) })
     }
 
+
+
     return (
+ 
+        
         <div className='userpage'>
             <Flex>
                 <Link to="/user">
@@ -81,12 +85,13 @@ const Notification = () => {
                     </Button>
             </Flex>
             <Container maxW={'container.sm'}>
+            
                 <List
                     className='notiWrap'
                     dataSource={noti.filter((b)=>b.read===false).reverse()}
                     renderItem={(a) => (
-                     
-                        <List.Item key={a._id} style={{cursor:'pointer'}} className='noti' onClick={()=>notiRead(a._id,a)}>
+                
+                        <List.Item style={{cursor:'pointer'}} className='noti'  key={a._id} onClick={()=>notiRead(a._id,a)}>
                             <List.Item.Meta
                                 avatar={<Avatar src={a.crushId.img} name={a.crushId.name} />}
                                 description={<Text color={color} fontWeight={'bold'} >Congratulation,<i>{a.crushId.name.split(' ')[0]}</i> also crush on you</Text>}
@@ -97,8 +102,11 @@ const Notification = () => {
                             <Text color={color}>{moment(a.date).startOf('min').fromNow(Date.now())} ago</Text>
                     
                         </List.Item>
+                        
                     )}
                 />
+                   
+                   
 
  <Modal
         m={5}
@@ -133,6 +141,7 @@ const Notification = () => {
       </Modal>
             </Container>
         </div>
+     
     )
 }
 

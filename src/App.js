@@ -8,6 +8,7 @@ import theme from './components/utils/theme/theme'
 import {useSelector} from 'react-redux'
 import Friends from './components/Friends'
 import Notification from './components/Notification';
+import Privacy from './components/Privacy';
 
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/user" element={user?<User/>:<Navigate to="/" />}/>
             <Route path="/friends" element={user?<Friends/>:<Navigate to="/" />}/>
             <Route path='/noti' element={user?<Notification/>:<Navigate to="/"/>} />
+            <Route path='/privacyandpolicy' element={<Privacy/>} />
           </Routes>
         </Router>
 

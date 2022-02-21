@@ -16,7 +16,9 @@ const About = () => {
                         <span>Login with Facebook</span>
                     </div>
                     <div className="two">
-                        two
+			<center>
+                        <img src='./Fa.gif' alt="facebook login"/>
+</center>
                     </div>
                 </div>
 
@@ -31,7 +33,9 @@ const About = () => {
                 
                     </div>
                     <div className="four">
-                        Four
+<center>
+                    <img src='./Sa.gif' alt="facebook login"/>
+</center>
                     </div>
                 </div>
 
@@ -43,7 +47,9 @@ const About = () => {
                         <span>If you match with your's <i>crush</i> , we will notify you </span>
                     </div>
                     <div className="six">
-                        six
+<center>
+                    <img src='./No.gif' alt="facebook login"/>
+</center>
                     </div>
                 </div>
 

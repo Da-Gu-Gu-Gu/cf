@@ -107,7 +107,12 @@ i{
 .two,.four,.six{
   height: 300px;
   width:50%;
+align-items:center;
   justify-content: center;
+}
+
+.two img,.four img,.six img{
+border-radius:10px;
 }
 
 .three{
@@ -239,7 +244,8 @@ i{
    justify-content: left;
     width: 100%;
   }
-  .two,.five,.six{
+  .two,.four,.six{
+margin-top:30px;
     width: 100%;
   }
   .three{
